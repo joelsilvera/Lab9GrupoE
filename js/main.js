@@ -1,4 +1,5 @@
 $(document).ready(function (){
+  let linksFotos=[];
   $(document).on("change", "#cargarFoto",
     function (){
       console.log(this.files);
@@ -27,7 +28,7 @@ function createPreview(file, index){
   var imgCodified= URL.createObjectURL(file);
   var name= file.name;
   //var img=$('<div id="img"><img style=" width: 132px;height: 100px;" src="'+imgCodified+'"/></div>')
-
-  var img=$('<div id="img"><img style=" width: 132px;height: 100px;" src="https://www.egames.news/__export/1617562106480/sites/debate/img/2021/04/04/pokemon-go_x6x.jpg_172596871.jpg"/></div>')
+  cantidadImg=$('.imgSola').length;
+  var img=$('<div class="imgSola" id="img'+cantidadImg+'"><img style=" width: 132px;height: 100px;" src="https://www.egames.news/__export/1617562106480/sites/debate/img/2021/04/04/pokemon-go_x6x.jpg_172596871.jpg"/></div>')
   $('#imagenes0').append(img);
 }
