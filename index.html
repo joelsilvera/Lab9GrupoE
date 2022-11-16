@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <title>Memoria </title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <style>
   .link {
@@ -20,7 +21,7 @@
     background: #999;
   }
 
-  #imagenes {
+  .imagenes {
     margin: 0 auto;
     width: 635px;
     z-index: 1;
@@ -31,7 +32,7 @@
   }
 
 
-  #imagenes div {
+  .imagenes div {
     float: left;
     width: 132px;
     height: 100px;
@@ -44,7 +45,7 @@
     box-shadow: 0 1px 2px rgba(0,0,0,.5);
     z-index: 2;
   }
-  #imagenes div img {
+  .imagenes div img {
     border: none;
     z-index: 3;
   }
@@ -100,64 +101,6 @@
     }
   }
 
-  $(document).ready(function() { //cuando el documento esté abierto
-    $("img").hide(); //los img los escondes
-    $("#imagenes div").click(abrirImagen);//y a los elementos de div imagenes,cuando hacemos click, ejecutas la funcion abrirImagen
-
-    mezclar(); //llamamos a la funcion mezclar para que se mezclen
-    contadorTiempo();//llamamos a la variable del tempo
-
-    function abrirImagen() { //esta es l a funcion imagen que inicializa al hacer clien en los div que estan dentro de #imagenes
-
-      id = $(this).attr("id");//...... declara que id, se le añade un atributo de id para nombrarlo mas abajo
-
-      if ($("#"+id+" img").is(":hidden")) { //ocultar os ID img
-        $("#imagenes div").unbind("click", abrirImagen); // utilizan unbind para añadir un evento y un manejador de eventos
-
-        $("#"+id+" img").slideDown('fast');
-
-        if (imgAbierta == "") {
-          idImg = id;
-          imgAbierta = $("#"+id+" img").attr("src");
-          setTimeout(function() {
-            $("#imagenes div").bind("click", abrirImagen)
-          }, 300);
-        } else {
-          actual = $("#"+id+" img").attr("src");
-          if (imgAbierta != actual) {
-            // Cerrar abiertas
-            setTimeout(function() {
-              $("#"+id+" img").slideUp('fast');
-              $("#"+idImg+" img").slideUp('fast');
-              idImg = "";
-              imgAbierta = "";
-            }, 400);
-          } else {
-            // Coinciden!!
-            $("#"+id+" img").addClass("opacity");
-            $("#"+idImg+" img").addClass("opacity");
-            found++;
-            idImg = "";
-            imgAbierta = "";
-          }
-
-          setTimeout(function() {
-            $("#imagenes div").bind("click", abrirImagen)
-          }, 400);
-        }
-
-        count++;
-        $("#contador").html("" + count);
-
-        if (found == 10) {
-          msg = '<span id="msg1">Has finalizado el juego en </span>';
-          $("#msgContador").prepend(msg);
-          msg = '<span id="msg2">Has finalizado el juego en </span>';
-          $("#msgTimer").prepend(msg);
-        }
-      }
-    }
-  });
 
 
   function reiniciarJuego() {
@@ -178,25 +121,18 @@
   }
 
 </script>
-<div id="imagenes">
-  <div id="img1"><img src=""/></div>
+<div class="imagenes" id="imagenes0">
 
-  <div id="img2"><img src="" /></div>
-
-  <div id="img11"><img src=""/></div>
-
-  <div id="img12"><img src=""/></div>
-  <div id="img23"><img src=""/></div>
 
 </div>
-<div id="imagenes">
-  <div id="img21"><img src=""/></div>
+<div class="imagenes" id="imagenes">
+  <div id="img21"><img src="https://cdn-production.codecademy.com/assets/logo/logo--dark-blue-ac069c03cf75e3cb300995028104f92e.svg"/></div>
 
-  <div id="img34"><img src="" /></div>
+  <div id="img34"><img src="http://tarjetasplasticaspvc.com/wp-content/uploads/2015/08/logo-con-border-blanco-e1439493224333.png" /></div>
 
-  <div id="img56"><img src=""/></div>
+  <div id="img56"><img src="https://cdn-production.codecademy.com/assets/logo/logo--dark-blue-ac069c03cf75e3cb300995028104f92e.svg"/></div>
 
-  <div id="img78"><img src=""/></div>
+  <div id="img78"><img src="http://tarjetasplasticaspvc.com/wp-content/uploads/2015/08/logo-con-border-blanco-e1439493224333.png"/></div>
 
 </div>
 <div id="botonera">
@@ -211,7 +147,9 @@
    <span id = "timer"></span>Segundos</span>
 </div>
 
-
+<h1 id="cantidadImg">Cantidad de imágenes: 0</h1>
+<div id="fotos"></div>
+<input type="file" multiple id="cargarFoto">
 </body>
 
 </html>
