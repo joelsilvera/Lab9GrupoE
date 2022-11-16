@@ -7,7 +7,7 @@ $(document).ready(function (){
       var element;
       var supportedImages= ["image/png"];
       //Máximo 5 fotos
-      if(files.length<=5){
+      if(files.length<=14){
         for(let i=0;i<files.length; i++){
           element= files[i];
           if(supportedImages.indexOf(element.type)!=-1) {
